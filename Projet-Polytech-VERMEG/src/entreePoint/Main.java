@@ -48,7 +48,6 @@ public class Main {
 						int cin  = clavierAjoutUtilisateur.nextInt();
 						System.out.println("saisir le num tel de l'utilisateur !!");
 						int tel  = clavierAjoutUtilisateur.nextInt();
-						// Utilisateur u = new Utilisateur(nom , prenom , cin , tel);
 						admin.ajouterUtilisateur(new Utilisateur(nom , prenom , cin , tel));
 						System.out.println("Utilisateur ajouter avec succes !");
 						System.out.println("ajout utilisateur taper 1 ajout produit taper 2 ou autre nombre pour quitter!!!");
@@ -72,7 +71,7 @@ public class Main {
 						admin.ajouterProduitStock(p);
 						System.out.println("produit ajouter avec succes !");
 						Produit.afficherLesProduit(admin.getProduits()) ;
-						System.out.println("ajout utilisateur taper 1 ajout produit taper 2 !!!");
+						System.out.println("ajout utilisateur taper 1 ajout produit taper 2 ou autre nombre pour retour au menu !!!");
 					}
 					else {
 						System.out.println("Taper 1 pour continuer en tant que admin ou 2 pour ouvrir en tant que utilisateur s'il vous plait  !");
@@ -126,7 +125,7 @@ public class Main {
 				}while(!sortirUtilisateur) ;}
 				
 				else {
-					System.out.println("Taper 1 pour connecter en tant que administrateur et 2 pour utilisateur !");
+					System.out.println("Taper 1 pour connecter en tant que administrateur et 2 pour utilisateur ou autre nombre pour retour au menu !");
 				}
 				
 			
@@ -144,7 +143,7 @@ public class Main {
 			
 			
 			
-			else System.out.println("Taper 1 pour connecter en tant que administrateur et 2 pour utilisateur !");
+			else System.out.println("Taper 1 pour connecter en tant que administrateur et 2 pour utilisateur ou autre nombre pour retour au menu !");
 		
 		
 		
