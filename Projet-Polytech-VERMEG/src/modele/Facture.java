@@ -4,14 +4,17 @@ import java.util.Vector;
 
 public class Facture {
 
-	private static int idFacture ;
+	
     private Vector<LigneDeCommande> achat ;
+    static int nbFacture  = 0 ;  
+	int idFacture   ;
 	
 	
 	
 	public Facture(Vector<LigneDeCommande> achat) {
-		this.idFacture ++ ;
 		this.achat = achat;
+		nbFacture ++ ;
+		idFacture = nbFacture ;
 	}
 	public int getIdFacture() {
 		return idFacture;
@@ -29,7 +32,8 @@ public class Facture {
 	
 	public void afficherFacture(Vector<LigneDeCommande> achat) {
 		for(int i = 0 ; i < achat.size() ; i++) {
-			achat.get(i).afficherLigneDeCommende();
+			
+		achat.get(i).afficherLigneDeCommende();
 		}
 	}
 	

@@ -5,14 +5,16 @@ import java.util.Vector;
 public class Utilisateur extends Personne {
 
 	private Vector<Facture> listFacture ;
-	static int idUtilisateur ;
+	static int nbUsers  = 0 ;  
+	int idUtilisateur   ;
 	
 	
 	
 	public Utilisateur(String nom, String prenom, int cin, int tel) {
 		super(nom, prenom, cin, tel);
 		this.listFacture = new Vector<Facture>();
-		idUtilisateur ++ ;
+		nbUsers ++ ;
+		idUtilisateur = nbUsers ;
 	}
 
 
@@ -20,29 +22,26 @@ public class Utilisateur extends Personne {
 	public Utilisateur(String nom , int cin , int tel) {
 		super(nom,cin,tel);
 		this.listFacture = new Vector<Facture>();
-		idUtilisateur ++ ;
+		nbUsers ++ ;
+		idUtilisateur = nbUsers ;
 	}
 	
 	public Utilisateur(String nom , int cin ) {
 		super(nom,cin);
 		this.listFacture = new Vector<Facture>();
-		idUtilisateur ++ ;
+		nbUsers ++ ;
+		idUtilisateur = nbUsers ;
 	}
 	
 	public Utilisateur() {
 		super();
 		this.listFacture = new Vector<Facture>();
-		idUtilisateur ++ ;
+		nbUsers ++ ;
+		idUtilisateur = nbUsers ;
 	}
 	
-	
-	
-	public static int getIdUtilisateur() {
+	public int getIdUtilisateur() {
 		return idUtilisateur;
-	}
-
-	public static void setIdUtilisateur(int idUtilisateur) {
-		Utilisateur.idUtilisateur = idUtilisateur;
 	}
 
 	public Vector<Facture> getListFacture() {
@@ -55,9 +54,22 @@ public class Utilisateur extends Personne {
 
 	public static void afficherLesUtilisateur(Vector<Utilisateur> u) {
 		for(int i = 0 ; i < u.size() ; i++) {
-		System.out.println("idUtilisateur : "+u.get(i).getIdUtilisateur()+"Nom utilisateur = "+u.get(i).getNom()+" , cin = "+u.get(i).getCin());
+			System.out.println("idUtilisateur : "+u.get(i).getIdUtilisateur()+" , Nom utilisateur = "+u.get(i).getNom()+" , cin = "+u.get(i).getCin());
 		}
+		
 	}
+	
+	public void ajouterFacture(Facture f) {
+		this.getListFacture().add(f);
+	}
+	
+	public void afficherListDesFactureParUtilisateur() {
+      for(int p = 0 ; p < this.getListFacture().size() ; p++) {
+    	  System.out.println("idFacture : "+this.getListFacture().get(p).getIdFacture());
+      }
+	}
+	
+
 	
 
 }

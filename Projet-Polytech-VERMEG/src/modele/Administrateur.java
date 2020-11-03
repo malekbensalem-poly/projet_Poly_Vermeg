@@ -39,8 +39,8 @@ public class Administrateur extends Personne {
 		this.utilisateurs = utilisateurs;
 	}
 	
-	public void ajouterProduitStock(Produit p , Vector<Produit> v1 ) {
-		v1.add(p);
+	public void ajouterProduitStock(Produit p) {
+		produits.add(p);
 	}
 	
 	public void supprimerProduitStock(Produit p , Vector<Produit> v1) {
@@ -72,21 +72,31 @@ public class Administrateur extends Personne {
 		}
 	}
 	
-	public void ajouterUtilisateur(Utilisateur u , Vector<Utilisateur> v2 ) {
-		v2.add(u);
+	public void ajouterUtilisateur(Utilisateur u ) {
+		utilisateurs.add(u);
 	}
 	
 	public void supprimerUtilisateur(Utilisateur u , Vector<Utilisateur> v2 ) {
 		v2.removeElement(u);
 	}
 	
-	public Produit getProduitFromVector(Vector<Produit> v1 , int idProduit) {
+	public Produit getProduitFromAdministration(Vector<Produit> v1 , int idProduit) {
 		for(int g = 0 ;  g < v1.size() ; g++) {
 			if(v1.get(g).getIdProduit()==idProduit) {
 				return v1.get(g) ;
 			}
 		}
 		System.out.println("le Produit n'est pas disponible !!!");
+	    return null ;	
+	}
+	
+	public Utilisateur getUtilisateurFromAdministration(Vector<Utilisateur> v1 , int idUtilisateur) {
+		for(int g = 0 ;  g < v1.size() ; g++) {
+			if(v1.get(g).getIdUtilisateur()==idUtilisateur) {
+				return v1.get(g) ;
+			}
+		}
+		System.out.println("l'utilisateur n'est pas disponible !!!");
 	    return null ;	
 	}
 

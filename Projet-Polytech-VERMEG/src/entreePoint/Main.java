@@ -32,7 +32,7 @@ public class Main {
 			
 			if(adminOuUtilisateur == 1) {
 				System.out.println("Bienvenue ADMIN !");
-				System.out.println("Si Vouler vous Ajouter Client taper 1 "
+				System.out.println("Si Vouler vous Ajouter utilisateur taper 1 "
 						+ "Si Vouler vous Ajouter Produit taper 2 !");
 				
 				do {
@@ -48,10 +48,10 @@ public class Main {
 						int cin  = clavierAjoutUtilisateur.nextInt();
 						System.out.println("saisir le num tel de l'utilisateur !!");
 						int tel  = clavierAjoutUtilisateur.nextInt();
-						Utilisateur u = new Utilisateur(nom , prenom , cin , tel);
-						admin.ajouterUtilisateur(u, admin.getUtilisateurs());
+						// Utilisateur u = new Utilisateur(nom , prenom , cin , tel);
+						admin.ajouterUtilisateur(new Utilisateur(nom , prenom , cin , tel));
 						System.out.println("Utilisateur ajouter avec succes !");
-						System.out.println("ajout utilisateur taper 1 ajout produit taper 2 !!!");
+						System.out.println("ajout utilisateur taper 1 ajout produit taper 2 ou autre nombre pour quitter!!!");
 						
 						
 					}
@@ -69,7 +69,7 @@ public class Main {
 						System.out.println("saisir le prix du produit !!");
 						double prix  = clavierAjoutProduit.nextDouble();
 						Produit p = new Produit(idProduit , disignation , reference , quantiteStock , prix);
-						admin.ajouterProduitStock(p, admin.getProduits());
+						admin.ajouterProduitStock(p);
 						System.out.println("produit ajouter avec succes !");
 						Produit.afficherLesProduit(admin.getProduits()) ;
 						System.out.println("ajout utilisateur taper 1 ajout produit taper 2 !!!");
@@ -86,8 +86,15 @@ public class Main {
 			
 			else if (adminOuUtilisateur == 2) {
 				System.out.println("Bienvenue cher utilisateur !");
+				Utilisateur.afficherLesUtilisateur(admin.getUtilisateurs());
+				System.out.println("Saisir l'idUtilisateur pour se connecter !!");
+				
+				Scanner clavierIdUtilisateur = new Scanner(System.in) ;
+				int idUtilisateurChoisit = clavierIdUtilisateur.nextInt();
+				Utilisateur u = admin.getUtilisateurFromAdministration(admin.getUtilisateurs(), idUtilisateurChoisit);
 				
 				
+				if(u!=null) {
 				Vector <LigneDeCommande> lesAchat = new Vector<LigneDeCommande>() ; 
 				Facture f = new Facture(lesAchat) ;
 				Produit.afficherLesProduit(admin.getProduits()) ;
@@ -97,9 +104,11 @@ public class Main {
 				System.out.println("Donner l'id du produit que voulez vous acheté ou autre nombre pour quitté") ;
 				Scanner clavierIdProduit = new Scanner(System.in) ;
 				int idProduitChoisit = clavierIdProduit.nextInt();
-				Produit p = admin.getProduitFromVector(admin.getProduits(), idProduitChoisit);
+				Produit p = admin.getProduitFromAdministration(admin.getProduits(), idProduitChoisit);
+				
 				if (p != null) {
-				System.out.println("Donner quantite que tu veut l'acheter !!!") ;
+				
+					System.out.println("Donner quantite que tu veut l'acheter !!!") ;
 				int quantiteProduitChoisit = clavierIdProduit.nextInt();
 				LigneDeCommande l = new LigneDeCommande(f,p,quantiteProduitChoisit); 
 				f.ajouterLigneDeCommande(lesAchat, l);
@@ -107,12 +116,18 @@ public class Main {
 				System.out.println("Le prix totale = "+f.calculerTotalPrix(lesAchat));}
 				
 				else {
+					u.ajouterFacture(f);
 					System.out.println("Le prix totale = "+f.calculerTotalPrix(lesAchat));
 					System.out.println("Si vous etes administrateur taper 1 si un utilisateur taper 2 !!!");
 					sortirUtilisateur = true ;} 
 				
 				
-				}while(!sortirUtilisateur) ;
+				
+				}while(!sortirUtilisateur) ;}
+				
+				else {
+					System.out.println("Taper 1 pour connecter en tant que administrateur et 2 pour utilisateur !");
+				}
 				
 			
 				
@@ -129,7 +144,7 @@ public class Main {
 			
 			
 			
-			else System.out.println("Taper 1 ou 2  s'il vous plait  admin ou utilisateur !!!");
+			else System.out.println("Taper 1 pour connecter en tant que administrateur et 2 pour utilisateur !");
 		
 		
 		
@@ -142,58 +157,6 @@ public class Main {
 			System.out.println("redemarrer le programme !!");
 		}
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		/*		Vector <LigneDeCommande> tableauAchat = new Vector<LigneDeCommande>() ; 
-		Facture f = new Facture(tableauAchat) ;
-		Scanner clavier = new Scanner(System.in);
-		System.out.println("***** Entrer les Lignes de commande *****") ;
-		
-		
-		System.out.println("La reference du produit 1 !? .... = ");
-		String a = clavier.nextLine();
-		System.out.println("Le prix du produit  !? .... = ");
-		Double b = clavier.nextDouble();
-		Produit p1 = new Produit(a,b);
-		p1.afficherProduit();
-		System.out.println("La quantite du produit  !? .... = ");
-		int c = clavier.nextInt();
-		LigneDeCommande l = new LigneDeCommande(p1 , c);
-		f.ajouterLigneDeCommande(tableauAchat, l);
-		
-		Scanner clavier1 = new Scanner(System.in);
-		System.out.println("La reference du produit 2 !? .... = ");
-		String a1 = clavier1.nextLine();
-		System.out.println("Le prix du produit  !? .... = ");
-		Double b1 = clavier1.nextDouble();
-		Produit p2 = new Produit(a1,b1);
-		p2.afficherProduit();
-		System.out.println("La quantite du produit  !? .... = ");
-		int c1 = clavier1.nextInt();
-		LigneDeCommande l1 = new LigneDeCommande(p2 , c1);
-		f.ajouterLigneDeCommande(tableauAchat, l1);
-		
-		
-		
-		f.afficherFacture(tableauAchat);
-		double total = f.calculerTotalPrix(tableauAchat);
-		System.out.println("le total prix de la facture = "+f.getIdFacture()+" est = "+total) ;
-		
-	*/
 	  }
 	 
 
