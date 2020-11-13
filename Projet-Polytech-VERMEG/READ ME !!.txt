@@ -1,0 +1,40 @@
+la version du code suivante est celle de ''practical exercice Step 2'' au bout de quelle on a réalisé une application console avec l'interraction avec la base de donnees en utilisant l'API java "JDBC" a partir du logique métier qu'on a developpé dans la partie 1 'Step1' ,
+--- *** Pour Tester ce Projet *** ---
+
+1- Installer l'environnement intégré de développement (IDE) Eclipse IDE 
+2- Un Serveur Local : Xampp  pour Acceder au DataBase via phpMyAdmin
+
+--- *** Etapes à suivre pour lancer le projet ***---
+
+1- Importer base de données SQL dans le système de gestion de base de données MySQL (phpMyAdmin) 
+Remarque : Notre base est situé dans un fichier nomé "bookstore.sql" sous le packetage "connectionDataBase"
+2- Importer le Projet dans Eclipse IDE
+
+---*** Etapes à suivre pour tester la classe Main ***---
+
+    -- Session  Administrateur--
+
+	Le Menu nous donne la possibilité de choisir le traitement que l'on veut effectuer telque :
+      
+       1-- Creer User
+       2-- Creer Product (dans notre cas le produit est de type 'Book')
+       3-- Supprimer User
+       4-- Supprimer Product (dans notre cas le produit est de type 'Book')
+       5-- Modifier User
+       6-- Modifier Product
+       7-- Display Bills     (l'ensemble des factures deja effectuer)
+       8-- Display Users (l'ensemble des utilisateurs deja inscrit) et apres vous pouvez avoir les factures effectuer par chaque utilisateur
+       9-- Display products     (l'ensemble des produits disponible)
+
+   -- Session Utilisateur --
+    
+             On doit suivre Un scénario spécefique pour avoir une bonne resultat 
+	donc les etapes sont les suivantes :
+	
+	1- Lors d'ouvrir la session utilisateur une liste qui contient un ensemble des utilisateurs s'affiche et vous avez le choix de choisir l'id utilisateur que            voulez vous connecter avec (on va l'amilioré par login et password dans les 'step' suivante)  
+	2- Une liste de l'ensemble des produits disponible s'affiche et vous avez le choix de choisir le produit que voulez vous acheter par taper l'id du produit  
+    3- Une fois vous avez choisit le produit vous avez le choix de choisir la quantité du produit que voulez vous acheter et passer la ligne de commande
+	4- Le prix total s'affiche et vous donne le choix d'acheter un autre produit(livre) ou supprimer l'une de ligne de commande passer et continuer ou de quitter
+	5- si vous avez choisit de quitter la facture s'affiche avec le prix total qu'il faut payer 
+
+ 
